@@ -1,0 +1,96 @@
+[
+  {
+    "fullname": "aws_instance.oran_smo",
+    "name": "oran_smo",
+    "type": "aws_instance",
+    "category": "resource",
+    "dependencies": [
+      "aws_security_group.ssh",
+      "aws_security_group.web",
+      "var.ami",
+      "var.ansible_user",
+      "var.instance",
+      "var.private_key",
+      "output.url-kiali",
+      "registry.terraform.io/hashicorp/aws"
+    ]
+  },
+  {
+    "fullname": "aws_security_group.ssh",
+    "name": "ssh",
+    "type": "aws_security_group",
+    "category": "resource",
+    "dependencies": [
+      "aws_instance.oran_smo",
+      "registry.terraform.io/hashicorp/aws"
+    ]
+  },
+  {
+    "fullname": "aws_security_group.web",
+    "name": "web",
+    "type": "aws_security_group",
+    "category": "resource",
+    "dependencies": [
+      "aws_instance.oran_smo",
+      "registry.terraform.io/hashicorp/aws"
+    ]
+  },
+  {
+    "fullname": "registry.terraform.io/hashicorp/aws",
+    "name": "terraform.io/hashicorp/aws",
+    "type": "registry",
+    "category": "provider",
+    "dependencies": [
+      "aws_security_group.ssh",
+      "aws_security_group.web",
+      "aws_instance.oran_smo",
+      "var.region",
+      "output.url-kiali",
+      "registry.terraform.io/hashicorp/aws",
+      "registry.terraform.io/hashicorp/aws",
+      "var.instance_count"
+    ]
+  },
+  {
+    "fullname": "var.ami",
+    "name": "ami",
+    "type": "var",
+    "category": "variable",
+    "dependencies": ["aws_instance.oran_smo"]
+  },
+  {
+    "fullname": "var.ansible_user",
+    "name": "ansible_user",
+    "type": "var",
+    "category": "variable",
+    "dependencies": ["aws_instance.oran_smo"]
+  },
+  {
+    "fullname": "var.instance",
+    "name": "instance",
+    "type": "var",
+    "category": "variable",
+    "dependencies": ["aws_instance.oran_smo"]
+  },
+  {
+    "fullname": "var.instance_count",
+    "name": "instance_count",
+    "type": "var",
+    "category": "variable",
+    "dependencies": ["registry.terraform.io/hashicorp/aws"]
+  },
+  {
+    "fullname": "var.private_key",
+    "name": "private_key",
+    "type": "var",
+    "category": "variable",
+    "dependencies": ["aws_instance.oran_smo"]
+  },
+  {
+    "fullname": "var.region",
+    "name": "region",
+    "type": "var",
+    "category": "variable",
+    "dependencies": ["registry.terraform.io/hashicorp/aws"]
+  }
+]
