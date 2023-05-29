@@ -14,6 +14,7 @@ class resourceObj:
         self.type = type
         self.category = category
         self.value = None
+        self.attributes = {}
         self.dependencies_parent = []
         self.dependencies_child = []
     def __repr__(self):
@@ -139,4 +140,8 @@ for resource in resourceList:
 
 # output to json
 jsonStr = json.dumps([ob.__dict__ for ob in resourceList])
-print(jsonStr)
+f = open("graph.json", "w")
+f.write(jsonStr)
+f.close()
+
+#print(jsonStr)
