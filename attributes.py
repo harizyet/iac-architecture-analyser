@@ -22,6 +22,6 @@ for tffile in tffilelist:
         dict = hcl2.load(file)
     combined_dict = {**combined_dict, **dict}
 
-print(combined_dict)
-
-#print(tfscript)
+for x in combined_dict:
+    print(x)
+    print(combined_dict[x])
