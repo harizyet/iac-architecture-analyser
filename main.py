@@ -13,9 +13,11 @@ class resourceObj:
         self.name = name
         self.type = type
         self.category = category
-        self.dependencies = []
+        self.value = None
+        self.dependencies_parent = []
+        self.dependencies_child = []
     def __repr__(self):
-        return f"<resourceObj name:{self.name} type:{self.type}, category:{self.category}, dependencies:{self.dependencies}>\n"
+        return f"<resourceObj name:{self.name}, type:{self.type}, category:{self.category}, dependencies:{self.dependencies}>\n"
 
 def extract_res_name(string):
     start_index = string.find("=") + 1
@@ -131,11 +133,10 @@ for branch in dotlist:
 for resource in resourceList:
     for pair in tempList:
         if resource.fullname == pair[0]:
-            resource.dependencies.append(pair[1])
+            resource.dependencies_child.append(pair[1])
         if resource.fullname == pair[1]:
-            resource.dependencies.append(pair[0])
+            resource.dependencies_parent.append(pair[0])
 
 # output to json
 jsonStr = json.dumps([ob.__dict__ for ob in resourceList])
-with open(file_path + '.json', 'w') as f:
-    f.write(jsonStr)
+print(jsonStr)
