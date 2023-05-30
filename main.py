@@ -163,15 +163,45 @@ for resource in resourceList:
             resource.dependencies_parent.append(pair[0])
 
 # add attributes to resourceList
-#for category in tf_fullattrlist:
-#    for resource in resourceList:
-#        if resource.category == category:
-#            resource.attributes = tf_fullattrlist[category]
+for category in tf_fullattrlist:
+    print("category: "+category)
+    for attr in tf_fullattrlist[category]:
+        #print(attr)
+        for subattr in attr:
+            if category == "provider":
+                print("name: " + subattr)
+                for providerattr in attr[subattr]:
+                    print("attr: " + providerattr)
+                    print("value: " + attr[subattr][providerattr])
+                print("---")
 
+            elif category == "resource":
+                print("type: " + subattr)
+                for resourceattr in attr[subattr]:
+                    print("name: " + resourceattr)
+                    for valuekey in attr[subattr][resourceattr]:
+                        print("valuekey: " + valuekey)
+                        sys.stdout.write("value: ")
+                        print(attr[subattr][resourceattr][valuekey])
+                print("---")
+
+            elif category == "variable":
+                print("name: " + subattr)
+                for value in attr[subattr].values():
+                    print("value: " + value)
+                print("---")
+
+            elif category == "output":
+                print("name: " + subattr)
+                for value in attr[subattr].values():
+                    print("value: " + value)
+                print("---")
+
+#print(tf_fullattrlist)
 
 # output to json
-jsonStr = json.dumps([ob.__dict__ for ob in resourceList])
-print(jsonStr)
+#jsonStr = json.dumps([ob.__dict__ for ob in resourceList])
+#print(jsonStr)
 #f = open("graph.json", "w")
 #f.write(jsonStr)
 #f.close()
